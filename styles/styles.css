@@ -289,3 +289,11 @@ legend{
     justify-content: space-between;
     margin-bottom: 2.5rem;
 }
+
+#btn-view{
+    background-color: rgb(75, 75, 75);
+    border: 1px solid black;
+    padding: .25rem;
+    color: white;
+    font-weight: bolder;
+}

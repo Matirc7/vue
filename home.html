@@ -67,10 +67,10 @@
               <span class="visually-hidden">Next</span>
             </button>
         </div>
+
+
       <section id="check-search">
-        <div id="checkbox">
-          
-        </div>
+
         <div class="search">
             <form id="search" class="d-flex input-search" role="search">
                 <input @keyup="filtrar" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" v-model="input">
@@ -97,7 +97,7 @@
               <p class="fw-bolder text-end">Category: {{carta.category.toUpperCase()}} </p>
               <p class="card-text">{{carta.description}}</p>
               <p class="valor-card" >${{carta.price}}
-              <a href="#" class="btn btn-primary ">View more...</a>
+              <a :href="'./details.html?id='+carta._id" class="btn btn-primary" id="btn-view">View more...</a>
             </div>
           </div>
         </section>

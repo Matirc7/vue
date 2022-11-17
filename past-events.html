@@ -11,14 +11,15 @@
     <title>Past Events</title>
 </head>
 <body>
+  <div id="app" class="text-white">
 
+    
     <header>
         <nav class="navbar bg-secondary ">
             <div class="container">
               <a class="navbar-brand" href="#">
                 <img src="./assets/Logo-Amazing-Events.png" alt="Bootstrap" width="120" height="40">
             </a>
-
             <nav class="navbar navbar-expand-lg bg-secondary">
                 <div class="container-fluid">
                   
@@ -34,7 +35,7 @@
                               <a class="nav-link active text-dark" style="font-weight:500;" aria-current="page" href="./upcoming-events.html">Upcoming Events</a>
                             </li>
                             <li class="nav-item">
-                              <a class="nav-link active text-dark" style="font-weight:500;" aria-current="page" href="./past-events.html">Past Events</a>
+                              <a class="nav-link active text-dark" style="font-weight:500;" aria-current="page" href="#">Past Events</a>
                             </li>
                           <li class="nav-item">
                             <a class="nav-link text-dark" style="font-weight:500;" href="./contact.html">Contact</a>
@@ -42,21 +43,20 @@
                           <li class="nav-item">
                             <a class="nav-link text-dark" style="font-weight:500;" href="./stats.html">Stats</a>
                           </li>
-                          <!-- <li class="nav-item">
-                            <a class="nav-link text-dark" style="font-weight:500;" href="./details.html">Details</a>
-                          </li> -->
+                          
                     </ul>
                   </div>
                 </div>
               </nav>
             </div>
         </nav>
+        
     </header>
-    <main id="main1">
-        <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-            <div class="carousel-inner">
+    <main id="main">
+      
+        <div class="carousel-inner">
               <div class="carousel-item active">
-                <h1 class="d-block w-1000 text-secondary" style="font-size: 4rem ;" > Past Events</h1>
+                <h1 class="d-block w-1000 text-secondary" style="font-size: 4rem ;" >Past Events</h1>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -67,27 +67,47 @@
               <span class="visually-hidden">Next</span>
             </button>
         </div>
-        <section id="check-search">
-          <div id="checkbox">
-            
-          </div>
-          <div class="search">
+      <section id="check-search">
+        <div id="checkbox">
+          
+        </div>
+        <div class="search">
             <form id="search" class="d-flex input-search" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit"> <i class="fa-solid fa-magnifying-glass"></i> </button>
+                <input @keyup="filtrar" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" v-model="input">
             </form>
         </div> 
-        </section>
-        <section class="cards-section section-cards">
-            
-            
-        </section>
+      </section>
 
+      <div class="text-white">
+        <div id="contenedor-check" class="d-flex flex-wrap gap-3 p-3">
+          <div class="form-check form-switch" v-for="category in category">
+            <input class="form-check-input" type="checkbox" role="switch" :id="category" :value="category" v-model="categoriasSelected">
+            <label class="form-check-label" :for="category">{{category}}</label>
+          </div>
+        </div>
+      </div>
+
+      
+        <section class="cards-section">
+          <div class="card" style="width: 18rem;" v-for="carta in pastEvents">
+            <img :src="carta.image" class="card-img-top" alt="{{carta.name}}"> 
+            <div class="card-body text-black">
+              <h5 class="card-title">{{carta.name}}</h5>
+              <p class="fw-bolder text-end">Category: {{carta.category.toUpperCase()}} </p>
+              <p class="card-text">{{carta.description}}</p>
+              <p class="valor-card" >${{carta.price}}
+              <a href="#" class="btn btn-primary" id="btn-view">View more...</a>
+            </div>
+          </div>
+        </section>
+        <p v-if="pastEvents.length == 0" class="text-white display-1 fw-bolder text-center">There are no related searches</p>
+
+        
     </main>
     <footer class="footer2">
       <div>
         <a href="#"> <img src="./assets/instagram.png" alt="instagram" style="width: 50px"> </a>
-        <a href="#"> <img src="./assets/fb.png.png" alt="facebook" style="width: 45px;"> </a>
+        <a href="#"> <img src="./assets/fb.png.png" alt="facebook" style="width: 45px;" > </a>
         <a href="#"> <img src="./assets/wsp.png" alt="whatsapp" style="width: 45px;"> </a>
       </div>
       <div>
@@ -95,8 +115,9 @@
       </div>
     </footer>
 
-
-    <script src="./js/past-events.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="./js/past-events.js"></script>
 </body>
 </html>
