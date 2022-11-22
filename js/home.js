@@ -5,7 +5,7 @@ createApp ( {
         return{
             url: "https://amazing-events.herokuapp.com/api/events",
             cards : [],
-            category: [],
+            categories: [],
             categoriasSelected: [],
             buckupsCards: [],
             input: ""
@@ -25,8 +25,8 @@ createApp ( {
                 this.cards = datos.events.filter(cartas => cartas.category)
                 this.buckupsCards = this.cards
                 this.cards.forEach(carta => {
-                    if (!this.category.includes(carta.category)) {
-                        this.category.push(carta.category)
+                    if (!this.categories.includes(carta.category)) {
+                        this.categories.push(carta.category)
                     }
                 })
             })
@@ -45,7 +45,6 @@ createApp ( {
             }else{
                 this.cards = primerFiltro
             }
-        }             //son funciones que se activan cuando hay un  cambio en las variables, por eso son reactivas, por ej, cuando seleccionamos un check, es un cambio reactivo.
-
+        }             //son metodos que se activan cuando hay un  cambio en la pagina, por el v-model
     }
 }).mount("#app")
